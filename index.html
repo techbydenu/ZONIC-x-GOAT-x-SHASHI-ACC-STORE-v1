@@ -223,6 +223,50 @@
         </div>
     </section>
 
+<!-- ADMIN LOGIN & CONTROL SECTION -->
+<section style="text-align: center; padding: 20px; background: #0b1120; border-top: 1px solid #1e293b;">
+    <!-- Password Prompt Form -->
+    <button onclick="toggleAdminBox()" style="background: transparent; color: #475569; border: none; font-size: 12px; cursor: pointer; font-weight: bold;">
+        🔒 Admin Login
+    </button>
+
+    <div id="adminModal" style="display: none; max-width: 400px; margin: 20px auto; background: #1e293b; padding: 20px; border-radius: 12px; border: 1px solid #334155; color: #fff;">
+        <h3 style="color: #f59e0b; margin-top: 0;">🔐 Admin Panel</h3>
+        <input type="password" id="inlineAdminPass" placeholder="Enter Password" style="width: 85%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff; text-align: center;">
+        <button onclick="checkInlineAdmin()" style="width: 90%; padding: 10px; background: #f59e0b; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Login</button>
+        <p id="inlineAdminErr" style="color: #ef4444; font-size: 13px; display: none; margin-top: 8px;">⚠️ මුරපදය වැරදියි!</p>
+
+        <!-- Un-hides After Correct Password -->
+        <div id="adminControls" style="display: none; margin-top: 15px; border-top: 1px solid #334155; padding-top: 15px;">
+            <p style="color: #22c55e; font-size: 14px; font-weight: bold;">✅ Welcome Admin!</p>
+            <a href="https://docs.google.com/spreadsheets/d/1-XA5ecvIW-5xHjA8i82nnc4ETZAWTaJ77UChAtTAQdA/edit" target="_blank" style="display: inline-block; padding: 10px 15px; background: #22c55e; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px;">
+                📂 Open Google Sheet
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+function toggleAdminBox() {
+    const box = document.getElementById('adminModal');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+function checkInlineAdmin() {
+    const pass = document.getElementById('inlineAdminPass').value;
+    const err = document.getElementById('inlineAdminErr');
+    const controls = document.getElementById('adminControls');
+
+    if (pass === "1234") { // 👈 ඔබේ Admin Password එක මෙතැනට දාන්න
+        err.style.display = "none";
+        controls.style.display = "block";
+    } else {
+        err.style.display = "block";
+        controls.style.display = "none";
+    }
+}
+</script>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
