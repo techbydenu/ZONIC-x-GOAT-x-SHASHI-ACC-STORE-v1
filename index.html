@@ -258,14 +258,15 @@
             </div>
         </div>
     </section>
-<!-- 1. ACCOUNTS DISPLAY SECTION -->
+
+<!-- ACCOUNTS SECTION -->
 <section id="accounts" style="padding: 40px 20px; background: #0f172a; text-align: center;">
     <h2 style="color: #f59e0b; margin-bottom: 20px;">🎮 Available Accounts</h2>
     
-    <!-- Cards Container -->
+    <!-- Ads Display Container -->
     <div id="accountsContainer" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1000px; margin: 0 auto;">
         
-        <!-- Sample Account Card -->
+        <!-- Sample Card -->
         <div class="acc-card" style="background: #1e293b; width: 280px; padding: 15px; border-radius: 12px; border: 1px solid #334155; position: relative; text-align: left; color: #fff;">
             <span style="position: absolute; top: 10px; right: 10px; background: #ef4444; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">🔥 HOT DEAL</span>
             <img src="https://via.placeholder.com/250x150" style="width: 100%; border-radius: 8px; margin-top: 15px; height: 150px; object-fit: cover;">
@@ -279,108 +280,85 @@
     </div>
 </section>
 
-<!-- 2. ADMIN LOGIN & ADS ADDING FORM SECTION -->
+<!-- ADD ACCOUNT FORM SECTION -->
 <section style="text-align: center; padding: 20px; background: #0b1120; border-top: 1px solid #1e293b;">
-    <button onclick="toggleAdminModal()" style="background: transparent; color: #475569; border: none; font-size: 12px; cursor: pointer; font-weight: bold;">
-        🔒 Admin Login
-    </button>
-
-    <!-- Admin Modal Box -->
-    <div id="adminArea" style="display: none; max-width: 450px; margin: 20px auto; background: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; color: #fff; text-align: left;">
+    <div style="max-width: 450px; margin: 20px auto; background: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; color: #fff; text-align: left;">
         
-        <!-- Login Step -->
-        <div id="adminLoginStep">
-            <h3 style="color: #f59e0b; margin-top: 0; text-align: center;">🔐 Admin Login</h3>
-            <input type="password" id="adminPassInput" placeholder="Enter Password" style="width: 93%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff; text-align: center;">
-            <button onclick="verifyAdmin()" style="width: 100%; padding: 10px; background: #f59e0b; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Login</button>
-            <p id="adminErr" style="color: #ef4444; font-size: 13px; display: none; text-align: center; margin-top: 8px;">⚠️ මුරපදය වැරදියි!</p>
-        </div>
+        <h3 style="color: #22c55e; margin-top: 0; text-align: center;">➕ Add New Account Ad</h3>
+        
+        <label style="font-size: 12px; color: #cbd5e1;">Badge Type:</label>
+        <select id="adBadge" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+            <option value="🔥 HOT DEAL">🔥 HOT DEAL</option>
+            <option value="💰 BUDGET BUY">💰 BUDGET BUY</option>
+            <option value="⚡ QUICK SALE">⚡ QUICK SALE</option>
+            <option value="👑 VIP ACCOUNT">👑 VIP ACCOUNT</option>
+        </select>
 
-        <!-- Add Ad Form Step (Shows after Login) -->
-        <div id="adminAdForm" style="display: none;">
-            <h3 style="color: #22c55e; margin-top: 0; text-align: center;">➕ Add New Account Ad</h3>
-            
-            <label style="font-size: 12px; color: #cbd5e1;">Badge Type:</label>
-            <select id="adBadge" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
-                <option value="🔥 HOT DEAL">🔥 HOT DEAL</option>
-                <option value="💰 BUDGET BUY">💰 BUDGET BUY</option>
-                <option value="⚡ QUICK SALE">⚡ QUICK SALE</option>
-                <option value="👑 VIP ACCOUNT">👑 VIP ACCOUNT</option>
-            </select>
+        <label style="font-size: 12px; color: #cbd5e1;">Account Title:</label>
+        <input type="text" id="adTitle" placeholder="e.g. Level 68 Max Evo Account" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
 
-            <label style="font-size: 12px; color: #cbd5e1;">Account Title:</label>
-            <input type="text" id="adTitle" placeholder="e.g. Level 68 Max Evo Account" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+        <label style="font-size: 12px; color: #cbd5e1;">Account Level:</label>
+        <input type="number" id="adLevel" placeholder="e.g. 68" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
 
-            <label style="font-size: 12px; color: #cbd5e1;">Account Level:</label>
-            <input type="number" id="adLevel" placeholder="e.g. 68" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+        <label style="font-size: 12px; color: #cbd5e1;">Key Specifics / Details:</label>
+        <input type="text" id="adSpecs" placeholder="e.g. Cobra MP40, Ak Dragon" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
 
-            <label style="font-size: 12px; color: #cbd5e1;">Key Specifics / Details:</label>
-            <input type="text" id="adSpecs" placeholder="e.g. Cobra MP40, Ak Dragon, 500 Diamonds" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+        <label style="font-size: 12px; color: #cbd5e1;">Price (LKR):</label>
+        <input type="text" id="adPrice" placeholder="e.g. 12,500" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
 
-            <label style="font-size: 12px; color: #cbd5e1;">Price (LKR):</label>
-            <input type="text" id="adPrice" placeholder="e.g. 12,500" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+        <!-- FILE UPLOAD FOR IMAGE -->
+        <label style="font-size: 12px; color: #cbd5e1; display: block; margin-top: 5px;">Select Image from Device:</label>
+        <input type="file" id="adImageFile" accept="image/*" style="width: 93%; padding: 8px; margin-bottom: 15px; background: #0f172a; color: #94a3b8; border-radius: 6px; border: 1px solid #334155;">
 
-            <label style="font-size: 12px; color: #cbd5e1;">Image URL (Link):</label>
-            <input type="text" id="adImage" placeholder="https://..." style="width: 93%; padding: 8px; margin-bottom: 15px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
-
-            <button onclick="addNewAccountAd()" style="width: 100%; padding: 12px; background: #22c55e; color: #fff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;">🚀 Post Account Ad</button>
-        </div>
-
+        <button onclick="addNewAccountAd()" style="width: 100%; padding: 12px; background: #22c55e; color: #fff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;">🚀 Post Account Ad</button>
     </div>
 </section>
 
-<!-- 3. JAVASCRIPT LOGIC -->
+<!-- JAVASCRIPT LOGIC -->
 <script>
-function toggleAdminModal() {
-    const box = document.getElementById('adminArea');
-    box.style.display = box.style.display === 'none' ? 'block' : 'none';
-}
-
-function verifyAdmin() {
-    const pass = document.getElementById('adminPassInput').value;
-    const err = document.getElementById('adminErr');
-    const loginStep = document.getElementById('adminLoginStep');
-    const adForm = document.getElementById('adminAdForm');
-
-    // Admin Password එක (ඔබට අවශ්‍ය එක දාන්න)
-    if (pass === "1234") {
-        loginStep.style.display = "none";
-        adForm.style.display = "block";
-    } else {
-        err.style.display = "block";
-    }
-}
-
 function addNewAccountAd() {
     const badge = document.getElementById('adBadge').value;
     const title = document.getElementById('adTitle').value.trim();
     const level = document.getElementById('adLevel').value.trim();
     const specs = document.getElementById('adSpecs').value.trim();
     const price = document.getElementById('adPrice').value.trim();
-    let image = document.getElementById('adImage').value.trim();
+    const fileInput = document.getElementById('adImageFile');
 
     if (!title || !price) {
         alert("කරුණාකර Title එක සහ Price එක ඇතුළත් කරන්න!");
         return;
     }
 
-    if (!image) {
-        image = "https://via.placeholder.com/250x150"; // Default image if blank
-    }
+    // Checking Image File
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            const imageDataUrl = e.target.result; // Base64 Image
+            renderAdCard(badge, title, level, specs, price, imageDataUrl);
+        };
 
+        reader.readAsDataURL(fileInput.files[0]);
+    } else {
+        // Default Image if no file selected
+        renderAdCard(badge, title, level, specs, price, "https://via.placeholder.com/250x150");
+    }
+}
+
+function renderAdCard(badge, title, level, specs, price, imageSrc) {
     // Badge Color selector
-    let badgeBg = "#ef4444"; // Red for Hot Deal
-    if(badge.includes("BUDGET")) badgeBg = "#3b82f6"; // Blue for Budget
-    if(badge.includes("QUICK")) badgeBg = "#f59e0b"; // Yellow for Quick
-    if(badge.includes("VIP")) badgeBg = "#8b5cf6"; // Purple for VIP
+    let badgeBg = "#ef4444"; 
+    if(badge.includes("BUDGET")) badgeBg = "#3b82f6"; 
+    if(badge.includes("QUICK")) badgeBg = "#f59e0b"; 
+    if(badge.includes("VIP")) badgeBg = "#8b5cf6"; 
 
     const container = document.getElementById('accountsContainer');
     
-    // Create New Card HTML
+    // Card HTML Structure
     const cardHtml = `
         <div class="acc-card" style="background: #1e293b; width: 280px; padding: 15px; border-radius: 12px; border: 1px solid #334155; position: relative; text-align: left; color: #fff;">
             <span style="position: absolute; top: 10px; right: 10px; background: ${badgeBg}; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">${badge}</span>
-            <img src="${image}" style="width: 100%; border-radius: 8px; margin-top: 15px; height: 150px; object-fit: cover;">
+            <img src="${imageSrc}" style="width: 100%; border-radius: 8px; margin-top: 15px; height: 150px; object-fit: cover;">
             <h3 style="margin: 10px 0 5px 0; color: #f59e0b; font-size: 18px;">${title}</h3>
             <p style="margin: 2px 0; font-size: 13px; color: #cbd5e1;">⭐ Level: <strong>${level || 'N/A'}</strong></p>
             <p style="margin: 2px 0; font-size: 13px; color: #cbd5e1;">🎯 Specs: <strong>${specs || 'Standard'}</strong></p>
@@ -389,17 +367,17 @@ function addNewAccountAd() {
         </div>
     `;
 
-    // Prepend to display at the top
+    // Append New Ad to Top
     container.insertAdjacentHTML('afterbegin', cardHtml);
 
-    alert("අලුත් Account Ad එක සාර්ථකව එකතු විය! 🎉");
+    alert("අලුත් Ad එක සාර්ථකව එකතු විය! 🎉");
 
-    // Clear inputs
+    // Clear Form Inputs
     document.getElementById('adTitle').value = "";
     document.getElementById('adLevel').value = "";
     document.getElementById('adSpecs').value = "";
     document.getElementById('adPrice').value = "";
-    document.getElementById('adImage').value = "";
+    document.getElementById('adImageFile').value = "";
 }
 </script>
 
