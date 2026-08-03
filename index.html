@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Store & Payment Checker</title>
+    <title>SHASHIxGOATxZONIC ACCOUNT STORE | Free Fire Acc Store</title>
     <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,7 +14,7 @@
     <!-- Animated Loading Screen -->
     <div id="loader">
         <div class="spinner"></div>
-        <div class="loader-text">SHASHI x GOAT x ZONIC</div>
+        <div class="loader-text">SHASHIxGOATxZONIC</div>
         <div class="loader-sub">LOADING STORE...</div>
     </div>
 
@@ -29,74 +29,206 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#accounts" class="nav-link"><i class="fas fa-gamepad"></i> Accounts</a></li>
-                <li><a href="#payment-check" class="nav-link"><i class="fas fa-search"></i> Check Payment</a></li>
-                <li><a href="#reviews-section" class="nav-link"><i class="fas fa-star"></i> Reviews</a></li>
+                <li><a href="#ff-accounts" class="nav-link"><i class="fas fa-gamepad"></i> FF Accounts</a></li>
+                <li><a href="#featured" class="nav-link"><i class="fas fa-gem"></i> Featured</a></li>
+                <li><a href="#trusted" class="nav-link"><i class="fas fa-shield-alt"></i> Trusted Seller</a></li>
                 <li><a href="#contact" class="nav-link"><i class="fas fa-phone-alt"></i> Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Payment Checker Section -->
-    <section id="payment-check" style="padding: 40px 20px; background: #0b1120; text-align: center;">
-        <div style="max-width: 500px; margin: 0 auto; background: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; color: #fff;">
-            <h2 style="color: #f59e0b; margin-top: 0;">💳 Payment Checker</h2>
-            <p style="font-size: 14px; color: #94a3b8;">ඔබගේ Phone Number එක ඇතුළත් කර Payment Details පරීක්ෂා කරන්න.</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="banner-container">
+                <img src="banner.jpg" alt="SHASHIxGOATxZONIC ACC STORE Banner" class="hero-banner">
+            </div>
+            <h1 class="hero-title">SG REGION <span class="highlight">TRUSTED ACC SELLERS</span></h1>
+            <p class="hero-subtitle">Get High-Level, Rare Bundle & Old Elite Pass Free Fire Accounts Safely & Fast!</p>
+            <div class="hero-btns">
+                <a href="#ff-accounts" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Browse Accounts</a>
+                <a href="https://wa.me/94723971768" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat On WhatsApp</a>
+            </div>
+        </div>
+    </section>
 
-            <input type="text" id="searchInput" placeholder="Enter Phone Number (07XXXXXXXX)" style="width: 90%; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff; text-align: center; font-size: 16px;">
+    <!-- Search & Filter Bar Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search accounts (e.g. Level 70, Cobra, Season 1, Old Pass)...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Fire Accounts Section -->
+    <section id="ff-accounts" class="section">
+        <div class="container">
+            <h2 class="section-title">🔥 <span class="gold-text">FREE FIRE</span> ACCOUNTS</h2>
+            <div class="account-grid" id="accountGrid">
+
+                <!-- Account Card 1 -->
+                <div class="card" data-tags="sg region cobra evo level 72">
+                    <div class="card-badge">HOT DEAL</div>
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-fire card-icon"></i>
+                        <span>SG REGION ACC #1</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>VIP Free Fire Account #1</h3>
+                        <div class="card-specs">
+                            <span><i class="fas fa-shield-alt"></i> Level: 72</span>
+                            <span><i class="fas fa-globe"></i> Region: SG</span>
+                            <span><i class="fas fa-bolt"></i> Evo Guns: 5 Max</span>
+                            <span><i class="fas fa-crown"></i> Old Passes: S4, S5, S6</span>
+                        </div>
+                        <div class="price-tag">LKR 18,500</div>
+                        <a href="https://wa.me/94723971768?text=I%20want%20to%20buy%20Account%201%20(LKR%2018500)" target="_blank" class="btn btn-buy"><i class="fab fa-whatsapp"></i> Buy via WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Account Card 2 -->
+                <div class="card" data-tags="sg region hiphop bunny level 68">
+                    <div class="card-badge gold-badge">RARE</div>
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-crown card-icon"></i>
+                        <span>SG REGION ACC #2</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Old Bundle Account #2</h3>
+                        <div class="card-specs">
+                            <span><i class="fas fa-shield-alt"></i> Level: 68</span>
+                            <span><i class="fas fa-globe"></i> Region: SG</span>
+                            <span><i class="fas fa-tshirt"></i> Rare Bundles: Bunny, Season 2</span>
+                            <span><i class="fas fa-gem"></i> Likes: 12,000+</span>
+                        </div>
+                        <div class="price-tag">LKR 24,000</div>
+                        <a href="https://wa.me/94713630607?text=I%20want%20to%20buy%20Account%202%20(LKR%2024000)" target="_blank" class="btn btn-buy"><i class="fab fa-whatsapp"></i> Buy via WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Account Card 3 -->
+                <div class="card" data-tags="budget level 60 sg region">
+                    <div class="card-badge blue-badge">BUDGET</div>
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-gamepad card-icon"></i>
+                        <span>SG REGION ACC #3</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Starter Gaming Account #3</h3>
+                        <div class="card-specs">
+                            <span><i class="fas fa-shield-alt"></i> Level: 61</span>
+                            <span><i class="fas fa-globe"></i> Region: SG</span>
+                            <span><i class="fas fa-gun"></i> AK Dragon Max</span>
+                            <span><i class="fas fa-thumbs-up"></i> Likes: 6,500+</span>
+                        </div>
+                        <div class="price-tag">LKR 8,500</div>
+                        <a href="https://wa.me/94750315604?text=I%20want%20to%20buy%20Account%203%20(LKR%208500)" target="_blank" class="btn btn-buy"><i class="fab fa-whatsapp"></i> Buy via WhatsApp</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Accounts Section -->
+    <section id="featured" class="section alt-bg">
+        <div class="container">
+            <h2 class="section-title">💎 <span class="red-text">FEATURED</span> ACCOUNTS</h2>
+            <div class="account-grid">
+
+                <!-- Featured Card 1 -->
+                <div class="card featured-card">
+                    <div class="card-badge glow-badge">ULTIMATE VIP</div>
+                    <div class="card-img-placeholder feat-bg">
+                        <i class="fas fa-dragon card-icon"></i>
+                        <span>GOD LEVEL ACC</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>God Level Account #4</h3>
+                        <div class="card-specs">
+                            <span><i class="fas fa-shield-alt"></i> Level: 75+</span>
+                            <span><i class="fas fa-globe"></i> Region: SG</span>
+                            <span><i class="fas fa-star"></i> All Evo Guns Maxed</span>
+                            <span><i class="fas fa-trophy"></i> Grandmaster Banner</span>
+                        </div>
+                        <div class="price-tag">LKR 45,000</div>
+                        <a href="https://wa.me/94723971768?text=I%20want%20to%20inquire%20about%20Featured%20God%20Level%20Account%204" target="_blank" class="btn btn-buy glow-btn"><i class="fab fa-whatsapp"></i> Inquire via WhatsApp</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted Seller Section -->
+    <section id="trusted" class="section">
+        <div class="container">
+            <h2 class="section-title">⭐ WHY CHOOSE <span class="gold-text">US</span>?</h2>
+            <div class="trusted-grid">
+                <div class="trusted-box">
+                    <i class="fas fa-shield-check trust-icon"></i>
+                    <h3>100% SAFE & SECURE</h3>
+                    <p>All account transfers are fully verified with 100% ownership guarantee.</p>
+                </div>
+                <div class="trusted-box">
+                    <i class="fas fa-user-check trust-icon"></i>
+                    <h3>VERIFIED SELLERS</h3>
+                    <p>SHASHI x GOAT x ZONIC are trusted SG Region account sellers with top reputation.</p>
+                </div>
+                <div class="trusted-box">
+                    <i class="fas fa-bolt trust-icon"></i>
+                    <h3>INSTANT DELIVERY</h3>
+                    <p>Get full account login credentials within minutes after payment confirmation.</p>
+                </div>
+                <div class="trusted-box">
+                    <i class="fas fa-handshake trust-icon"></i>
+                    <h3>FAIR & BEST PRICES</h3>
+                    <p>Get maximum value for your money with affordable prices for rare accounts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section alt-bg">
+        <div class="container">
+            <h2 class="section-title">📞 <span class="gold-text">CONTACT</span> US</h2>
+            <p class="contact-sub">Directly connect with us on WhatsApp for fast account dealing!</p>
             
-            <button onclick="checkPayment()" style="width: 95%; padding: 12px; background: #f59e0b; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px;">Check Payment Status</button>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp contact-icon"></i>
+                    <h3>Seller Hotline 1</h3>
+                    <p class="phone-number">072 397 1768</p>
+                    <a href="https://wa.me/94723971768" target="_blank" class="btn btn-whatsapp-card">Chat 072 397 1768</a>
+                </div>
 
-            <!-- Result Display Box -->
-            <div id="resultBox" style="display: none; margin-top: 20px; padding: 15px; background: #0f172a; border-radius: 8px; text-align: left; border: 1px solid #334155;">
-                <p>👤 <strong>Name:</strong> <span id="resName" style="color: #f59e0b;"></span></p>
-                <p>🆔 <strong>Account ID:</strong> <span id="resAcc" style="color: #38bdf8;"></span></p>
-                <p>💰 <strong>Total Amount:</strong> <span id="resTotal"></span></p>
-                <p>✅ <strong>Paid Amount:</strong> <span id="resPaid" style="color: #22c55e;"></span></p>
-                <p>⚠️ <strong>Due Amount:</strong> <span id="resDue" style="color: #ef4444;"></span></p>
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp contact-icon"></i>
+                    <h3>Seller Hotline 2</h3>
+                    <p class="phone-number">071 363 0607</p>
+                    <a href="https://wa.me/94713630607" target="_blank" class="btn btn-whatsapp-card">Chat 071 363 0607</a>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp contact-icon"></i>
+                    <h3>Seller Hotline 3</h3>
+                    <p class="phone-number">075 031 5604</p>
+                    <a href="https://wa.me/94750315604" target="_blank" class="btn btn-whatsapp-card">Chat 075 031 5604</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- REVIEWS SECTION -->
-    <section id="reviews-section" style="padding: 40px 20px; background: #0f172a; font-family: sans-serif;">
-        <div style="max-width: 600px; margin: 0 auto; background: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; color: #fff;">
-            <h2 style="color: #f59e0b; text-align: center; margin-top: 0;">⭐ Customer Reviews</h2>
-
-            <!-- Submit Review Form -->
-            <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
-                <h3 style="margin-top: 0; font-size: 16px; color: #cbd5e1;">Add Your Review</h3>
-                
-                <input type="text" id="revName" placeholder="Your Name" style="width: 95%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;">
-                
-                <label style="font-size: 13px; color: #cbd5e1; display: block; margin-bottom: 5px;">Rating:</label>
-                <select id="revRating" style="width: 99%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;">
-                    <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
-                    <option value="4">⭐⭐⭐⭐ (4/5)</option>
-                    <option value="3">⭐⭐⭐ (3/5)</option>
-                    <option value="2">⭐⭐ (2/5)</option>
-                    <option value="1">⭐ (1/5)</option>
-                </select>
-
-                <textarea id="revComment" placeholder="Write your feedback..." rows="3" style="width: 95%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;"></textarea>
-                
-                <label style="font-size: 13px; color: #cbd5e1; display: block; margin-bottom: 5px;">Upload Screenshot (Optional):</label>
-                <input type="file" id="revImage" accept="image/*" style="background: transparent; border: none; color: #94a3b8; margin-bottom: 15px;">
-
-                <button onclick="submitReview()" id="subBtn" style="width: 100%; padding: 12px; background: #f59e0b; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px;">Submit Review</button>
-            </div>
-
-            <!-- Reviews Display List -->
-            <div id="reviewsContainer">
-                <p style="text-align: center; color: #94a3b8;">Loading reviews...</p>
-            </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 <span class="gold-text">SHASHIxGOATxZONIC ACCOUNT STORE</span>. All Rights Reserved.</p>
+            <p class="sub-foot">Designed for Vercel Deployment & Free Fire Gamers</p>
         </div>
-    </section>
-
-    <!-- Footer with Admin Panel Link -->
-    <footer style="text-align: center; padding: 20px; background: #0b1120; border-top: 1px solid #1e293b;">
-        <p style="color: #64748b; font-size: 14px; margin-bottom: 10px;">&copy; 2026 SHASHI x GOAT x ZONIC Store. All rights reserved.</p>
-        <a href="admin.html" style="color: #475569; text-decoration: none; font-size: 12px; font-weight: bold;">🔒 Admin Panel Login</a>
     </footer>
 
     <script src="script.js"></script>
