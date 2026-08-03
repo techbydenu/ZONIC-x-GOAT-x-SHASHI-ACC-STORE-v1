@@ -166,7 +166,39 @@
         </div>
     </section>
 
-<!-- JavaScript for Review Submission -->
+<!-- REVIEWS SECTION -->
+<section id="reviews-section" style="padding: 40px 20px; background: #0f172a; font-family: sans-serif;">
+    <div style="max-width: 600px; margin: 0 auto; background: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; color: #fff;">
+        <h2 style="color: #f59e0b; text-align: center; margin-top: 0;">⭐ Customer Reviews</h2>
+
+        <!-- Submit Review Form -->
+        <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="margin-top: 0; font-size: 16px; color: #cbd5e1;">Add Your Review</h3>
+            
+            <input type="text" id="revName" placeholder="Your Name" style="width: 95%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;">
+            
+            <label style="font-size: 13px; color: #cbd5e1; display: block; margin-bottom: 5px;">Rating:</label>
+            <select id="revRating" style="width: 99%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;">
+                <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                <option value="3">⭐⭐⭐ (3/5)</option>
+                <option value="2">⭐⭐ (2/5)</option>
+                <option value="1">⭐ (1/5)</option>
+            </select>
+
+            <textarea id="revComment" placeholder="Write your feedback..." rows="3" style="width: 95%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;"></textarea>
+            
+            <label style="font-size: 13px; color: #cbd5e1; display: block; margin-bottom: 5px;">Upload Screenshot (Optional):</label>
+            <input type="file" id="revImage" accept="image/*" style="background: transparent; border: none; color: #94a3b8; margin-bottom: 15px;">
+
+            <button onclick="submitReview()" id="subBtn" style="width: 100%; padding: 12px; background: #f59e0b; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px;">Submit Review</button>
+        </div>
+
+        <!-- Reviews Display List -->
+        <div id="reviewsContainer">
+            <p style="text-align: center; color: #94a3b8;">Loading reviews...</p>
+        </div>
+    </div>
 <script>
 function submitReview() {
     const name = document.getElementById('revName').value.trim();
@@ -237,7 +269,6 @@ function displayReviewCard(name, rating, comment, imgSrc) {
     subBtn.disabled = false;
 }
 </script>
-
     
     <!-- Trusted Seller Section -->
     <section id="trusted" class="section">
