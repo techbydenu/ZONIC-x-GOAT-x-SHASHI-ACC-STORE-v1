@@ -481,14 +481,13 @@ function renderCard(badge, title, level, specs, price, imageSrc) {
     document.getElementById('adImageFile').value = "";
 }
 </script>
-
-<!-- REVIEWS SECTION WITH ADMIN ACCESS -->
+<!-- REVIEWS & ADMIN SECTION -->
 <section id="reviews-section" style="padding: 40px 20px; background: #0f172a; font-family: sans-serif;">
     <div style="max-width: 600px; margin: 0 auto; background: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; color: #fff;">
         
         <h2 style="color: #f59e0b; text-align: center; margin-top: 0;">⭐ Customer Reviews</h2>
 
-        <!-- Submit Review Form for Users -->
+        <!-- 1. Submit Review Form (For Public Users) -->
         <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
             <h3 style="margin-top: 0; font-size: 16px; color: #cbd5e1;">Add Your Review</h3>
 
@@ -508,26 +507,26 @@ function renderCard(badge, title, level, specs, price, imageSrc) {
             <label style="font-size: 13px; color: #cbd5e1; display: block; margin-bottom: 5px;">Upload Screenshot (Optional):</label>
             <input type="file" id="revImage" accept="image/*" style="background: transparent; border: none; color: #94a3b8; margin-bottom: 15px;">
 
-            <button onclick="submitReview()" id="subBtn" style="width: 100%; padding: 12px; background: #f59e0b; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px;">Submit Review</button>
+            <button onclick="submitReviewToSheet()" id="subBtn" style="width: 100%; padding: 12px; background: #f59e0b; color: #000; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px;">Submit Review</button>
         </div>
 
-        <!-- Reviews Display List -->
+        <!-- 2. Live Reviews Display Container -->
         <div id="reviewsContainer">
             <p style="text-align: center; color: #94a3b8;">Loading reviews...</p>
         </div>
 
-        <!-- HR SEPARATOR -->
+        <!-- SEPARATOR -->
         <hr style="border: 0; border-top: 1px solid #334155; margin: 30px 0;">
 
-        <!-- ADMIN ACCESS INSIDE REVIEWS SECTION -->
+        <!-- 3. Admin Access Button & Protected Form -->
         <div style="text-align: center;">
             <button onclick="toggleAdminPanel()" style="background: transparent; color: #64748b; border: none; font-size: 12px; cursor: pointer; font-weight: bold;">
-                🔒 Admin Access (Add Ads)
+                🔒 Admin Access (Post Ads)
             </button>
 
             <div id="adminPanelModal" style="display: none; margin-top: 15px; background: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #334155; text-align: left;">
                 
-                <!-- Admin Login -->
+                <!-- Admin Passcode Login -->
                 <div id="adminLoginBox">
                     <h4 style="color: #f59e0b; margin-top: 0; text-align: center;">🔐 Admin Passcode</h4>
                     <input type="password" id="adminSecretPass" placeholder="Enter Admin Password" style="width: 93%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff; text-align: center;">
@@ -574,10 +573,54 @@ function renderCard(badge, title, level, specs, price, imageSrc) {
     </div>
 </section>
 
-<!-- JAVASCRIPT LOGIC FOR REVIEWS & ADMIN -->
+<!-- JAVASCRIPT LOGIC -->
 <script>
-/* --- REVIEW LOGIC --- */
-function submitReview() {
+// 🌐 YOUR GOOGLE APPS SCRIPT URL CONNECTED HERE
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbycq6ouqvN8ZnuxsWLlqhx-BmztRMBSCBhCCNHsGDrhFoEBLsD2fbYTeVUaGd7_ER__/exec";
+
+// Load Reviews when page opens
+window.onload = function() {
+    loadReviewsFromSheet();
+};
+
+/* --- GOOGLE SHEET REVIEW LOGIC --- */
+function loadReviewsFromSheet() {
+    const container = document.getElementById('reviewsContainer');
+    
+    fetch(SCRIPT_URL)
+        .then(res => res.json())
+        .then(data => {
+            if (!data || data.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #94a3b8;">තවම Reviews නැත.</p>';
+                return;
+            }
+            container.innerHTML = ""; // Clear Loading Text
+            
+            // Show latest reviews at top
+            data.reverse().forEach(item => {
+                let stars = "⭐".repeat(parseInt(item.rating || 5));
+                let imgHtml = item.image ? <img src="${item.image}" style="max-width: 100%; height: 120px; object-fit: cover; border-radius: 6px; margin-top: 10px; border: 1px solid #334155;"> : "";
+
+                const cardHtml = `
+                    <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #334155; text-align: left;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <strong style="color: #f59e0b; font-size: 16px;">${item.name}</strong>
+                            <span style="font-size: 14px;">${stars}</span>
+                        </div>
+                        <p style="margin: 8px 0; font-size: 14px; color: #cbd5e1; line-height: 1.4;">${item.comment}</p>
+                        ${imgHtml}
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        })
+        .catch(err => {
+            console.error(err);
+            container.innerHTML = '<p style="text-align: center; color: #ef4444;">Reviews Load කිරීමට නොහැකි විය.</p>';
+        });
+}
+
+function submitReviewToSheet() {
     const name = document.getElementById('revName').value.trim();
     const rating = document.getElementById('revRating').value;
     const comment = document.getElementById('revComment').value.trim();
@@ -585,56 +628,143 @@ function submitReview() {
     const subBtn = document.getElementById('subBtn');
 
     if (!name || !comment) {
-        alert("කරුණාකර ඔබේ නම (Your Name) සහ අදහස (Feedback) ඇතුළත් කරන්න!");
+        alert("කරුණාකර ඔබේ නම සහ Feedback එක ඇතුළත් කරන්න!");
         return;
     }
 
-    subBtn.innerText = "Submitting...";
+    subBtn.innerText = "Saving to Database...";
     subBtn.disabled = true;
 
     if (imageInput.files && imageInput.files[0]) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            displayReviewCard(name, rating, comment, e.target.result);
+            sendDataToSheet(name, rating, comment, e.target.result);
         };
         reader.readAsDataURL(imageInput.files[0]);
     } else {
-        displayReviewCard(name, rating, comment, null);
+        sendDataToSheet(name, rating, comment, "");
     }
 }
 
-function displayReviewCard(name, rating, comment, imgSrc) {
-    const container = document.getElementById('reviewsContainer');
+function sendDataToSheet(name, rating, comment, imageBase64) {
     const subBtn = document.getElementById('subBtn');
 
-    let stars = "⭐".repeat(parseInt(rating));
-    let imgHtml = imgSrc ? <img src="${imgSrc}" style="max-width: 100%; height: 120px; object-fit: cover; border-radius: 6px; margin-top: 10px; border: 1px solid #334155;"> : "";
+    const payload = {
+        name: name,
+        rating: rating,
+        comment: comment,
+        image: imageBase64
+    };
 
-    const reviewCardHtml = `
-        <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #334155; text-align: left;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <strong style="color: #f59e0b; font-size: 16px;">${name}</strong>
-                <span style="font-size: 14px;">${stars}</span>
-            </div>
-            <p style="margin: 8px 0; font-size: 14px; color: #cbd5e1; line-height: 1.4;">${comment}</p>
-            ${imgHtml}
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        alert("ඔබගේ Review එක සාර්ථකව Google Database එකට එකතු විය! 🎉");
+        document.getElementById('revName').value = "";
+        document.getElementById('revComment').value = "";
+        document.getElementById('revImage').value = "";
+        subBtn.innerText = "Submit Review";
+        subBtn.disabled = false;
+        
+        // Refresh review list after 1.5s
+        setTimeout(loadReviewsFromSheet, 1500);
+    })
+    .catch(err => {
+        alert("Error submitting review.");
+        subBtn.innerText = "Submit Review";
+        subBtn.disabled = false;
+    });
+}
+
+/* --- ADMIN PANEL LOGIC --- */
+function toggleAdminPanel() {
+    const box = document.getElementById('adminPanelModal');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+function loginAsAdmin() {
+    const pass = document.getElementById('adminSecretPass').value;
+    const err = document.getElementById('passErr');
+    
+    // Passcode: 1234
+    if (pass === "1234") { 
+        err.style.display = "none";
+        document.getElementById('adminLoginBox').style.display = "none";
+        document.getElementById('adCreationForm').style.display = "block";
+    } else {
+        err.style.display = "block";
+    }
+}
+
+function logoutAdmin() {
+    document.getElementById('adminSecretPass').value = "";
+    document.getElementById('adminLoginBox').style.display = "block";
+    document.getElementById('adCreationForm').style.display = "none";
+}
+
+function postAdAsAdmin() {
+    const badge = document.getElementById('adBadge').value;
+    const title = document.getElementById('adTitle').value.trim();
+    const level = document.getElementById('adLevel').value.trim();
+    const specs = document.getElementById('adSpecs').value.trim();
+    const price = document.getElementById('adPrice').value.trim();
+    const fileInput = document.getElementById('adImageFile');
+
+    if (!title || !price) {
+        alert("කරුණාකර Title එක සහ Price එක ඇතුළත් කරන්න!");
+        return;
+    }
+
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            renderAccountCard(badge, title, level, specs, price, e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    } else {
+        renderAccountCard(badge, title, level, specs, price, "https://via.placeholder.com/250x150");
+    }
+}
+
+function renderAccountCard(badge, title, level, specs, price, imageSrc) {
+    let badgeBg = "#ef4444"; 
+    if(badge.includes("BUDGET")) badgeBg = "#3b82f6"; 
+    if(badge.includes("QUICK")) badgeBg = "#f59e0b"; 
+    if(badge.includes("VIP")) badgeBg = "#8b5cf6"; 
+
+    const container = document.getElementById('accountsContainer');
+    
+    if(!container) {
+        alert("Warning: Accounts Container ('accountsContainer') නොමැත!");
+        return;
+    }
+
+    const cardHtml = `
+        <div class="acc-card" style="background: #1e293b; width: 280px; padding: 15px; border-radius: 12px; border: 1px solid #334155; position: relative; text-align: left; color: #fff;">
+            <span style="position: absolute; top: 10px; right: 10px; background: ${badgeBg}; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">${badge}</span>
+            <img src="${imageSrc}" style="width: 100%; border-radius: 8px; margin-top: 15px; height: 150px; object-fit: cover;">
+            <h3 style="margin: 10px 0 5px 0; color: #f59e0b; font-size: 18px;">${title}</h3>
+            <p style="margin: 2px 0; font-size: 13px; color: #cbd5e1;">⭐ Level: <strong>${level || 'N/A'}</strong></p>
+            <p style="margin: 2px 0; font-size: 13px; color: #cbd5e1;">🎯 Specs: <strong>${specs || 'Standard'}</strong></p>
+            <h4 style="color: #22c55e; margin: 10px 0; font-size: 18px;">LKR ${price}</h4>
+            <button onclick="alert('Contacting Admin...')" style="width: 100%; padding: 10px; background: #f59e0b; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Buy Now</button>
         </div>
     `;
 
-    if (container.innerHTML.includes("Loading reviews...")) {
-        container.innerHTML = "";
-    }
+    container.insertAdjacentHTML('afterbegin', cardHtml);
+    alert("Ad එක සාර්ථකව Post විය! 🎉");
 
-    container.insertAdjacentHTML('afterbegin', reviewCardHtml);
-    alert("ඔබගේ Review එක සාර්ථකව එකතු විය! Thank you ❤️");
-
-    document.getElementById('revName').value = "";
-    document.getElementById('revComment').value = "";
-    document.getElementById('revImage').value = "";
-    subBtn.innerText = "Submit Review";
-    subBtn.disabled = false;
+    document.getElementById('adTitle').value = "";
+    document.getElementById('adLevel').value = "";
+    document.getElementById('adSpecs').value = "";
+    document.getElementById('adPrice').value = "";
+    document.getElementById('adImageFile').value = "";
 }
-
+</script>
 /* --- ADMIN LOGIC --- */
 function toggleAdminPanel() {
     const box = document.getElementById('adminPanelModal');
