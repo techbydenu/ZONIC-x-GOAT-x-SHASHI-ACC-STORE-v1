@@ -174,9 +174,9 @@
         <!-- Submit Review Form -->
         <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
             <h3 style="margin-top: 0; font-size: 16px; color: #cbd5e1;">Add Your Review</h3>
-            
+
             <input type="text" id="revName" placeholder="Your Name" style="width: 95%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;">
-            
+
             <label style="font-size: 13px; color: #cbd5e1; display: block; margin-bottom: 5px;">Rating:</label>
             <select id="revRating" style="width: 99%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;">
                 <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
@@ -187,7 +187,7 @@
             </select>
 
             <textarea id="revComment" placeholder="Write your feedback..." rows="3" style="width: 95%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #fff;"></textarea>
-            
+
             <label style="font-size: 13px; color: #cbd5e1; display: block; margin-bottom: 5px;">Upload Screenshot (Optional):</label>
             <input type="file" id="revImage" accept="image/*" style="background: transparent; border: none; color: #94a3b8; margin-bottom: 15px;">
 
@@ -199,6 +199,9 @@
             <p style="text-align: center; color: #94a3b8;">Loading reviews...</p>
         </div>
     </div>
+</section>
+
+<!-- REVIEW JAVASCRIPT LOGIC -->
 <script>
 function submitReview() {
     const name = document.getElementById('revName').value.trim();
@@ -212,11 +215,10 @@ function submitReview() {
         return;
     }
 
-    // Button status change
     subBtn.innerText = "Submitting...";
     subBtn.disabled = true;
 
-    // Convert Image if selected
+    // Screenshot එකක් තියෙනවා නම් එකතු කරගැනීම
     if (imageInput.files && imageInput.files[0]) {
         const reader = new FileReader();
         reader.onload = function(e) {
@@ -232,13 +234,8 @@ function displayReviewCard(name, rating, comment, imgSrc) {
     const container = document.getElementById('reviewsContainer');
     const subBtn = document.getElementById('subBtn');
 
-    // Convert rating number to stars string
     let stars = "⭐".repeat(parseInt(rating));
-
-    let imgHtml = "";
-    if (imgSrc) {
-        imgHtml = <img src="${imgSrc}" style="max-width: 100%; height: 120px; object-fit: cover; border-radius: 6px; margin-top: 10px; border: 1px solid #334155;">;
-    }
+    let imgHtml = imgSrc ? <img src="${imgSrc}" style="max-width: 100%; height: 120px; object-fit: cover; border-radius: 6px; margin-top: 10px; border: 1px solid #334155;"> : "";
 
     const reviewCardHtml = `
         <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #334155; text-align: left;">
@@ -251,7 +248,7 @@ function displayReviewCard(name, rating, comment, imgSrc) {
         </div>
     `;
 
-    // Clear "Loading reviews..." text if present
+    // Clear "Loading reviews..." text
     if (container.innerHTML.includes("Loading reviews...")) {
         container.innerHTML = "";
     }
@@ -259,9 +256,9 @@ function displayReviewCard(name, rating, comment, imgSrc) {
     // Add new review to top
     container.insertAdjacentHTML('afterbegin', reviewCardHtml);
 
-    alert("ඔබගේ Review එක සාර්ථකව Submit විය! Thank you ❤️");
+    alert("ඔබගේ Review එක සාර්ථකව එකතු විය! Thank you ❤️");
 
-    // Reset Form & Button
+    // Clear Form & Reset Button
     document.getElementById('revName').value = "";
     document.getElementById('revComment').value = "";
     document.getElementById('revImage').value = "";
