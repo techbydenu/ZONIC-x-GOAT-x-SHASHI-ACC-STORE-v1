@@ -765,69 +765,7 @@ function renderAccountCard(badge, title, level, specs, price, imageSrc) {
     document.getElementById('adImageFile').value = "";
 }
 </script>
-/* --- ADMIN LOGIC --- */
-function toggleAdminPanel() {
-    const box = document.getElementById('adminPanelModal');
-    box.style.display = box.style.display === 'none' ? 'block' : 'none';
-}
 
-function loginAsAdmin() {
-    const pass = document.getElementById('adminSecretPass').value;
-    const err = document.getElementById('passErr');
-    
-    // Admin Password එක (දැනට 1234)
-    if (pass === "1234") { 
-        err.style.display = "none";
-        document.getElementById('adminLoginBox').style.display = "none";
-        document.getElementById('adCreationForm').style.display = "block";
-    } else {
-        err.style.display = "block";
-    }
-}
-
-function logoutAdmin() {
-    document.getElementById('adminSecretPass').value = "";
-    document.getElementById('adminLoginBox').style.display = "block";
-    document.getElementById('adCreationForm').style.display = "none";
-}
-
-function postAdAsAdmin() {
-    const badge = document.getElementById('adBadge').value;
-    const title = document.getElementById('adTitle').value.trim();
-    const level = document.getElementById('adLevel').value.trim();
-    const specs = document.getElementById('adSpecs').value.trim();
-    const price = document.getElementById('adPrice').value.trim();
-    const fileInput = document.getElementById('adImageFile');
-
-    if (!title || !price) {
-        alert("කරුණාකර Title එක සහ Price එක ඇතුළත් කරන්න!");
-        return;
-    }
-
-    if (fileInput.files && fileInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            renderAccountCard(badge, title, level, specs, price, e.target.result);
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-    } else {
-        renderAccountCard(badge, title, level, specs, price, "https://via.placeholder.com/250x150");
-    }
-}
-
-function renderAccountCard(badge, title, level, specs, price, imageSrc) {
-    let badgeBg = "#ef4444"; 
-    if(badge.includes("BUDGET")) badgeBg = "#3b82f6"; 
-    if(badge.includes("QUICK")) badgeBg = "#f59e0b"; 
-    if(badge.includes("VIP")) badgeBg = "#8b5cf6"; 
-
-    // Accounts Display Container Search
-    const container = document.getElementById('accountsContainer');
-    
-    if(!container) {
-        alert("Warning: Accounts Container ID ('accountsContainer') එක සයිට් එකේ හොයාගන්න නැහැ!");
-        return;
-    }
 
     const cardHtml = `
         <div class="acc-card" style="background: #1e293b; width: 280px; padding: 15px; border-radius: 12px; border: 1px solid #334155; position: relative; text-align: left; color: #fff;">
@@ -841,16 +779,7 @@ function renderAccountCard(badge, title, level, specs, price, imageSrc) {
         </div>
     `;
 
-    container.insertAdjacentHTML('afterbegin', cardHtml);
-    alert("Ad එක සාර්ථකව Post විය! 🎉 (Available Accounts කොටසට එකතු විය)");
-
-    // Clear inputs
-    document.getElementById('adTitle').value = "";
-    document.getElementById('adLevel').value = "";
-    document.getElementById('adSpecs').value = "";
-    document.getElementById('adPrice').value = "";
-    document.getElementById('adImageFile').value = "";
-}
+ 
 </script>
 
     
