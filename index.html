@@ -258,29 +258,150 @@
             </div>
         </div>
     </section>
+<!-- 1. ACCOUNTS DISPLAY SECTION -->
+<section id="accounts" style="padding: 40px 20px; background: #0f172a; text-align: center;">
+    <h2 style="color: #f59e0b; margin-bottom: 20px;">🎮 Available Accounts</h2>
+    
+    <!-- Cards Container -->
+    <div id="accountsContainer" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1000px; margin: 0 auto;">
+        
+        <!-- Sample Account Card -->
+        <div class="acc-card" style="background: #1e293b; width: 280px; padding: 15px; border-radius: 12px; border: 1px solid #334155; position: relative; text-align: left; color: #fff;">
+            <span style="position: absolute; top: 10px; right: 10px; background: #ef4444; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">🔥 HOT DEAL</span>
+            <img src="https://via.placeholder.com/250x150" style="width: 100%; border-radius: 8px; margin-top: 15px; height: 150px; object-fit: cover;">
+            <h3 style="margin: 10px 0 5px 0; color: #f59e0b; font-size: 18px;">Level 75 VIP Account</h3>
+            <p style="margin: 2px 0; font-size: 13px; color: #cbd5e1;">⭐ Level: <strong>75</strong></p>
+            <p style="margin: 2px 0; font-size: 13px; color: #cbd5e1;">🎯 Specs: <strong>5x Evo Weapons, Rare Bundles</strong></p>
+            <h4 style="color: #22c55e; margin: 10px 0; font-size: 18px;">LKR 15,000</h4>
+            <button onclick="alert('Contacting Admin...')" style="width: 100%; padding: 10px; background: #f59e0b; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Buy Now</button>
+        </div>
 
-<!-- ADMIN LOGIN & CONTROL SECTION -->
+    </div>
+</section>
+
+<!-- 2. ADMIN LOGIN & ADS ADDING FORM SECTION -->
 <section style="text-align: center; padding: 20px; background: #0b1120; border-top: 1px solid #1e293b;">
-    <!-- Password Prompt Form -->
-    <button onclick="toggleAdminBox()" style="background: transparent; color: #475569; border: none; font-size: 12px; cursor: pointer; font-weight: bold;">
+    <button onclick="toggleAdminModal()" style="background: transparent; color: #475569; border: none; font-size: 12px; cursor: pointer; font-weight: bold;">
         🔒 Admin Login
     </button>
 
-    <div id="adminModal" style="display: none; max-width: 400px; margin: 20px auto; background: #1e293b; padding: 20px; border-radius: 12px; border: 1px solid #334155; color: #fff;">
-        <h3 style="color: #f59e0b; margin-top: 0;">🔐 Admin Panel</h3>
-        <input type="password" id="inlineAdminPass" placeholder="Enter Password" style="width: 85%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff; text-align: center;">
-        <button onclick="checkInlineAdmin()" style="width: 90%; padding: 10px; background: #f59e0b; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Login</button>
-        <p id="inlineAdminErr" style="color: #ef4444; font-size: 13px; display: none; margin-top: 8px;">⚠️ මුරපදය වැරදියි!</p>
-
-        <!-- Un-hides After Correct Password -->
-        <div id="adminControls" style="display: none; margin-top: 15px; border-top: 1px solid #334155; padding-top: 15px;">
-            <p style="color: #22c55e; font-size: 14px; font-weight: bold;">✅ Welcome Admin!</p>
-            <a href="https://docs.google.com/spreadsheets/d/1-XA5ecvIW-5xHjA8i82nnc4ETZAWTaJ77UChAtTAQdA/edit" target="_blank" style="display: inline-block; padding: 10px 15px; background: #22c55e; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px;">
-                📂 Open Google Sheet
-            </a>
+    <!-- Admin Modal Box -->
+    <div id="adminArea" style="display: none; max-width: 450px; margin: 20px auto; background: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; color: #fff; text-align: left;">
+        
+        <!-- Login Step -->
+        <div id="adminLoginStep">
+            <h3 style="color: #f59e0b; margin-top: 0; text-align: center;">🔐 Admin Login</h3>
+            <input type="password" id="adminPassInput" placeholder="Enter Password" style="width: 93%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff; text-align: center;">
+            <button onclick="verifyAdmin()" style="width: 100%; padding: 10px; background: #f59e0b; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Login</button>
+            <p id="adminErr" style="color: #ef4444; font-size: 13px; display: none; text-align: center; margin-top: 8px;">⚠️ මුරපදය වැරදියි!</p>
         </div>
+
+        <!-- Add Ad Form Step (Shows after Login) -->
+        <div id="adminAdForm" style="display: none;">
+            <h3 style="color: #22c55e; margin-top: 0; text-align: center;">➕ Add New Account Ad</h3>
+            
+            <label style="font-size: 12px; color: #cbd5e1;">Badge Type:</label>
+            <select id="adBadge" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+                <option value="🔥 HOT DEAL">🔥 HOT DEAL</option>
+                <option value="💰 BUDGET BUY">💰 BUDGET BUY</option>
+                <option value="⚡ QUICK SALE">⚡ QUICK SALE</option>
+                <option value="👑 VIP ACCOUNT">👑 VIP ACCOUNT</option>
+            </select>
+
+            <label style="font-size: 12px; color: #cbd5e1;">Account Title:</label>
+            <input type="text" id="adTitle" placeholder="e.g. Level 68 Max Evo Account" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+
+            <label style="font-size: 12px; color: #cbd5e1;">Account Level:</label>
+            <input type="number" id="adLevel" placeholder="e.g. 68" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+
+            <label style="font-size: 12px; color: #cbd5e1;">Key Specifics / Details:</label>
+            <input type="text" id="adSpecs" placeholder="e.g. Cobra MP40, Ak Dragon, 500 Diamonds" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+
+            <label style="font-size: 12px; color: #cbd5e1;">Price (LKR):</label>
+            <input type="text" id="adPrice" placeholder="e.g. 12,500" style="width: 93%; padding: 8px; margin-bottom: 10px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+
+            <label style="font-size: 12px; color: #cbd5e1;">Image URL (Link):</label>
+            <input type="text" id="adImage" placeholder="https://..." style="width: 93%; padding: 8px; margin-bottom: 15px; border-radius: 6px; background: #0f172a; color: #fff; border: 1px solid #334155;">
+
+            <button onclick="addNewAccountAd()" style="width: 100%; padding: 12px; background: #22c55e; color: #fff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;">🚀 Post Account Ad</button>
+        </div>
+
     </div>
 </section>
+
+<!-- 3. JAVASCRIPT LOGIC -->
+<script>
+function toggleAdminModal() {
+    const box = document.getElementById('adminArea');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+function verifyAdmin() {
+    const pass = document.getElementById('adminPassInput').value;
+    const err = document.getElementById('adminErr');
+    const loginStep = document.getElementById('adminLoginStep');
+    const adForm = document.getElementById('adminAdForm');
+
+    // Admin Password එක (ඔබට අවශ්‍ය එක දාන්න)
+    if (pass === "1234") {
+        loginStep.style.display = "none";
+        adForm.style.display = "block";
+    } else {
+        err.style.display = "block";
+    }
+}
+
+function addNewAccountAd() {
+    const badge = document.getElementById('adBadge').value;
+    const title = document.getElementById('adTitle').value.trim();
+    const level = document.getElementById('adLevel').value.trim();
+    const specs = document.getElementById('adSpecs').value.trim();
+    const price = document.getElementById('adPrice').value.trim();
+    let image = document.getElementById('adImage').value.trim();
+
+    if (!title || !price) {
+        alert("කරුණාකර Title එක සහ Price එක ඇතුළත් කරන්න!");
+        return;
+    }
+
+    if (!image) {
+        image = "https://via.placeholder.com/250x150"; // Default image if blank
+    }
+
+    // Badge Color selector
+    let badgeBg = "#ef4444"; // Red for Hot Deal
+    if(badge.includes("BUDGET")) badgeBg = "#3b82f6"; // Blue for Budget
+    if(badge.includes("QUICK")) badgeBg = "#f59e0b"; // Yellow for Quick
+    if(badge.includes("VIP")) badgeBg = "#8b5cf6"; // Purple for VIP
+
+    const container = document.getElementById('accountsContainer');
+    
+    // Create New Card HTML
+    const cardHtml = `
+        <div class="acc-card" style="background: #1e293b; width: 280px; padding: 15px; border-radius: 12px; border: 1px solid #334155; position: relative; text-align: left; color: #fff;">
+            <span style="position: absolute; top: 10px; right: 10px; background: ${badgeBg}; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">${badge}</span>
+            <img src="${image}" style="width: 100%; border-radius: 8px; margin-top: 15px; height: 150px; object-fit: cover;">
+            <h3 style="margin: 10px 0 5px 0; color: #f59e0b; font-size: 18px;">${title}</h3>
+            <p style="margin: 2px 0; font-size: 13px; color: #cbd5e1;">⭐ Level: <strong>${level || 'N/A'}</strong></p>
+            <p style="margin: 2px 0; font-size: 13px; color: #cbd5e1;">🎯 Specs: <strong>${specs || 'Standard'}</strong></p>
+            <h4 style="color: #22c55e; margin: 10px 0; font-size: 18px;">LKR ${price}</h4>
+            <button onclick="alert('Contacting Admin...')" style="width: 100%; padding: 10px; background: #f59e0b; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Buy Now</button>
+        </div>
+    `;
+
+    // Prepend to display at the top
+    container.insertAdjacentHTML('afterbegin', cardHtml);
+
+    alert("අලුත් Account Ad එක සාර්ථකව එකතු විය! 🎉");
+
+    // Clear inputs
+    document.getElementById('adTitle').value = "";
+    document.getElementById('adLevel').value = "";
+    document.getElementById('adSpecs').value = "";
+    document.getElementById('adPrice').value = "";
+    document.getElementById('adImage').value = "";
+}
+</script>
 
 <script>
 function toggleAdminBox() {
